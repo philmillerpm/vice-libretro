@@ -671,7 +671,8 @@ static int process_cmdline(const char* argv)
             }
             closedir(zip_dir);
 
-            log_cb(RETRO_LOG_INFO, "ZIP PRE -> full_path - %s\n", full_path);
+            log_cb(RETRO_LOG_INFO, "ZIP PRE(%ld) -> full_path - %s\n", zip_mode, full_path);
+            log_cb(RETRO_LOG_INFO, "ZIP PATH -> zip_dir - %s\n", zip_dir);
 
             switch (zip_mode)
             {
@@ -681,12 +682,12 @@ static int process_cmdline(const char* argv)
                         if (dc_get_image_type(browsed_file) == DC_IMAGE_TYPE_NIBBLER)
                         {
                             snprintf(full_path, sizeof(full_path), "%s%s%s.g64", retro_temp_directory, FSDEV_DIR_SEP_STR, path_remove_extension(browsed_file));
-                            log_cb(RETRO_LOG_INFO, "ZIP POST NIBBLER -> full_path - %s\n", full_path);
+                            log_cb(RETRO_LOG_INFO, "ZIP EXT PATH POST NIBBLER -> full_path - %s\n", full_path);
                         }
                         else
                         {
                             snprintf(full_path, sizeof(full_path), "%s%s%s", retro_temp_directory, FSDEV_DIR_SEP_STR, browsed_file);
-                            log_cb(RETRO_LOG_INFO, "ZIP POST -> full_path - %s\n", full_path);
+                            log_cb(RETRO_LOG_INFO, "ZIP EXT PATH -> full_path - %s\n", full_path);
                         }
                     }
                     break;
