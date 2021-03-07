@@ -677,9 +677,15 @@ static int process_cmdline(const char* argv)
                     if (browsed_file[0] != '\0')
                     {
                         if (dc_get_image_type(browsed_file) == DC_IMAGE_TYPE_NIBBLER)
+                        {
                             snprintf(full_path, sizeof(full_path), "%s%s%s.g64", retro_temp_directory, FSDEV_DIR_SEP_STR, path_remove_extension(browsed_file));
+                            log_cb(RETRO_LOG_INFO, "ZIP POST NIBBLER -> full_path - %s\n", full_path);
+                        }
                         else
+                        {
                             snprintf(full_path, sizeof(full_path), "%s%s%s", retro_temp_directory, FSDEV_DIR_SEP_STR, browsed_file);
+                            log_cb(RETRO_LOG_INFO, "ZIP POST -> full_path - %s\n", full_path);
+                        }
                     }
                     break;
                 case 1: /* Generated playlist */
