@@ -616,9 +616,15 @@ static int process_cmdline(const char* argv)
         {
             path_mkdir(retro_temp_directory);
             if (strendswith(argv, "zip"))
+            {
                zip_uncompress(full_path, retro_temp_directory, NULL);
+               log_cb(RETRO_LOG_INFO, "ZIP -> retro_temp_directory - %s\n", retro_temp_directory);
+               log_cb(RETRO_LOG_INFO, "ZIP -> full_path - %s\n", full_path);
+            }
             else if (strendswith(argv, "7z"))
+            {
                sevenzip_uncompress(full_path, retro_temp_directory, NULL);
+            }
 
             /* Default to directory mode */
             int zip_mode = 0;
