@@ -1722,12 +1722,12 @@ void retro_set_paths(void)
    }
 
    /* Temp directory for ZIPs and NIB->G64 conversions */
-   snprintf(retro_temp_directory, sizeof(retro_temp_directory), "%s%s%s",
-            retro_save_directory, FSDEV_DIR_SEP_STR, "TEMP");
+   snprintf(retro_temp_directory, sizeof(retro_temp_directory), "%s%s",
+            retro_save_directory, "TEMP");
 
    /* Use system directory for data files such as JiffyDOS and keymaps */
-   snprintf(retro_system_data_directory, sizeof(retro_system_data_directory), "%s%s%s",
-            retro_system_directory, FSDEV_DIR_SEP_STR, "vice");
+   snprintf(retro_system_data_directory, sizeof(retro_system_data_directory), "%s%s",
+            retro_system_directory, "vice");
    if (!path_is_directory(retro_system_data_directory))
       archdep_mkdir(retro_system_data_directory, 0);
 }
