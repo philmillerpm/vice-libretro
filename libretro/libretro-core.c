@@ -607,6 +607,9 @@ static int process_cmdline(const char* argv)
             snprintf(nib_input, sizeof(nib_input), "%s", argv);
             snprintf(nib_output, sizeof(nib_output), "%s%s%s.g64", retro_temp_directory, FSDEV_DIR_SEP_STR, zip_basename);
             path_mkdir(retro_temp_directory);
+            log_cb(RETRO_LOG_INFO, "ZIP PATH -> retro_temp_directory - %s\n", retro_temp_directory);
+            log_cb(RETRO_LOG_INFO, "ZIP PATH -> nib_input - %s\n", nib_input);
+            log_cb(RETRO_LOG_INFO, "ZIP PATH -> nib_output - %s\n", nib_output);
             nib_convert(nib_input, nib_output);
             argv = nib_output;
         }
@@ -647,6 +650,8 @@ static int process_cmdline(const char* argv)
                 {
                     snprintf(nib_input, sizeof(nib_input), "%s%s%s", retro_temp_directory, FSDEV_DIR_SEP_STR, zip_dirp->d_name);
                     snprintf(nib_output, sizeof(nib_output), "%s%s%s.g64", retro_temp_directory, FSDEV_DIR_SEP_STR, path_remove_extension(zip_dirp->d_name));
+                    log_cb(RETRO_LOG_INFO, "ZIP PATH -> nib_input - %s\n", nib_input);
+                    log_cb(RETRO_LOG_INFO, "ZIP PATH -> nib_output - %s\n", nib_output);
                     nib_convert(nib_input, nib_output);
                 }
             }
@@ -667,12 +672,13 @@ static int process_cmdline(const char* argv)
                     zip_mode = 1;
                     zip_m3u_num++;
                     snprintf(zip_m3u_list[zip_m3u_num-1], RETRO_PATH_MAX, "%s", zip_dirp->d_name);
+                    log_cb(RETRO_LOG_INFO, "ZIP PATH -> zip_m3u_num - %ld\n", zip_m3u_num);
+                    log_cb(RETRO_LOG_INFO, "ZIP PATH -> d_name - %ld\n", zip_dirp->d_name);
                 }
             }
             closedir(zip_dir);
 
             log_cb(RETRO_LOG_INFO, "ZIP PRE(%ld) -> full_path - %s\n", zip_mode, full_path);
-            log_cb(RETRO_LOG_INFO, "ZIP PATH -> zip_dir - %s\n", zip_dir);
 
             switch (zip_mode)
             {
