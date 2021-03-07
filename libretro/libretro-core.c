@@ -3409,12 +3409,15 @@ void retro_set_environment(retro_environment_t cb)
       if (log_cb)
          log_cb(RETRO_LOG_INFO, "retro_set_environment: GET_CORE_OPTIONS_VERSION - %ld - failed, not setting CORE_OPTIONS now.\n", version);
    }
-   else if (version == 1)
+   
+   if (version == 1)
    {
       cb(RETRO_ENVIRONMENT_SET_CORE_OPTIONS, core_options);
    }
    else
    {
+      if (log_cb)
+         log_cb(RETRO_LOG_INFO, "retro_set_environment: GET_CORE_OPTIONS_VERSION - %ld - attempting to send options via legacy method\n", version);
       /* Fallback for older API */
       /* Use define because C doesn't care about const. */
 #define NUM_CORE_OPTIONS ( sizeof(core_options)/sizeof(core_options[0])-1 )
