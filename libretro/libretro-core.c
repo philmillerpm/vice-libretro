@@ -582,12 +582,14 @@ static int process_cmdline(const char* argv)
 
         /* "Browsed" file in ZIP */
         char browsed_file[RETRO_PATH_MAX] = {0};
+        log_cb(RETRO_LOG_INFO, "ZIP PATH -> argv - %s\n", argv);
         if (strstr(argv, ".zip#") || strstr(argv, ".7z#"))
         {
             char *token = strtok((char*)argv, "#");
             while (token != NULL)
             {
                 snprintf(browsed_file, sizeof(browsed_file), "%s", token);
+                log_cb(RETRO_LOG_INFO, "ZIP PATH -> browsed_file - %s\n", browsed_file);
                 token = strtok(NULL, "#");
             }
         }
@@ -596,7 +598,9 @@ static int process_cmdline(const char* argv)
         /* ZIP + NIB vars, use the same temp directory for single NIBs */
         char zip_basename[RETRO_PATH_MAX] = {0};
         snprintf(zip_basename, sizeof(zip_basename), "%s", path_basename(full_path));
+        log_cb(RETRO_LOG_INFO, "ZIP PATH -> zip_basename - %s\n", zip_basename);
         path_remove_extension(zip_basename);
+        log_cb(RETRO_LOG_INFO, "ZIP PATH -> zip_basename - %s\n", zip_basename);
 
         char nib_input[RETRO_PATH_MAX] = {0};
         char nib_output[RETRO_PATH_MAX] = {0};
