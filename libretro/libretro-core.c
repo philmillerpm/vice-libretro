@@ -671,6 +671,8 @@ static int process_cmdline(const char* argv)
             }
             closedir(zip_dir);
 
+            log_cb(RETRO_LOG_INFO, "ZIP PRE -> full_path - %s\n", full_path);
+
             switch (zip_mode)
             {
                 case 0: /* Extracted path */
@@ -698,6 +700,7 @@ static int process_cmdline(const char* argv)
                     break;
             }
 
+            log_cb(RETRO_LOG_INFO, "ZIP POST -> full_path - %s\n", full_path);
             argv = full_path;
         }
 
