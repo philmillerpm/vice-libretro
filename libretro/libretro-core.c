@@ -635,7 +635,8 @@ static int process_cmdline(const char* argv)
 
             /* Default to directory mode */
             int zip_mode = 0;
-            snprintf(full_path, sizeof(full_path), "%s", retro_temp_directory);
+            snprintf(full_path, sizeof(full_path), "%s%s%s", retro_temp_directory, FSDEV_DIR_SEP_STR, zip_basename);
+            log_cb(RETRO_LOG_INFO, "ZIP -> full_path - %s\n", full_path);
 
             FILE *zip_m3u;
             char zip_m3u_list[DC_MAX_SIZE][RETRO_PATH_MAX] = {0};
